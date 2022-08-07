@@ -85,7 +85,7 @@ public class GamblingSimulation {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Gambling Simulator");
+		System.out.println("Welcome To Gambling Simulation Problem");
 		game();
 		continueGame();
 	}
