@@ -1,24 +1,38 @@
 package com.bridgelabz.GamblingProblem;
 
+
 public class GamblingSimulation {
 
 	static int DAILY_STAKE = 100;
 	static int PER_DAY_BET = 1;
-	static int win = 1;
 	public static void main(String[] args) {
+
+		int StackIncrease = 150;
+		int StackDecrease = 50;
+		int win = 0;
 		System.out.println("Welcome To Gambling Simulation Problem");
-		while(DAILY_STAKE<150 && DAILY_STAKE>50){
-			int result = (int)(Math.random()*10)%2;
-			if (result==win){
-				DAILY_STAKE++;
-				System.out.println("Won");
+		System.out.println(" Daily Stack is " + DAILY_STAKE);
+		System.out.println("Betting price is " +PER_DAY_BET);
+		for (int day = 1; day <= 20; day++) {
+
+			while (DAILY_STAKE > StackDecrease && DAILY_STAKE < StackIncrease) {
+				double rand = Math.random();
+
+				if (rand < 0.5) {
+					System.out.println("win the bet and stack is " + (DAILY_STAKE +=PER_DAY_BET));
+					win = win + 50;
+					break;
+				} else {
+					System.out.println("Loss the bet and stack is " + (DAILY_STAKE -= PER_DAY_BET));
+					win = win - 50;
+					break;
+				}
 			}
-			else{
-				DAILY_STAKE--;
-				System.out.println("lost");
-			}
+
+			System.out.println("winning amount is " + win);
+
 		}
-		System.out.println(DAILY_STAKE  );
+		System.out.println(" final winning amount is " + win);
 
 	}
 }
