@@ -5,34 +5,43 @@ public class GamblingSimulation {
 
 	static int DAILY_STAKE = 100;
 	static int PER_DAY_BET = 1;
+	static int win = 1;
+	static int daysWon=0;
+	static int daysLost=0;
+	static int totalAmountWonFor20Day=0;
+	static int totalAmountLostFor20Day=0;
+
+
 	public static void main(String[] args) {
-
-		int StackIncrease = 150;
-		int StackDecrease = 50;
-		int win = 0;
 		System.out.println("Welcome To Gambling Simulation Problem");
-		System.out.println(" Daily Stack is " + DAILY_STAKE);
-		System.out.println("Betting price is " +PER_DAY_BET);
-		for (int day = 1; day <= 20; day++) {
-
-			while (DAILY_STAKE > StackDecrease && DAILY_STAKE < StackIncrease) {
-				double rand = Math.random();
-
-				if (rand < 0.5) {
-					System.out.println("win the bet and stack is " + (DAILY_STAKE +=PER_DAY_BET));
-					win = win + 50;
-					break;
+		for (int day =1; day<=20;day++) {
+			DAILY_STAKE=100;
+			while (DAILY_STAKE < 150 && DAILY_STAKE > 50) {
+				int result = (int) (Math.random() * 10) % 2;
+				if (result == win) {
+					DAILY_STAKE++;
 				} else {
-					System.out.println("Loss the bet and stack is " + (DAILY_STAKE -= PER_DAY_BET));
-					win = win - 50;
-					break;
+					DAILY_STAKE--;
+
 				}
 			}
-
-			System.out.println("winning amount is " + win);
+			if(DAILY_STAKE>100) {
+				totalAmountWonFor20Day+=50;
+				System.out.println("Won on day "+day + " is "+ (DAILY_STAKE-100));
+				daysWon++;
+			}
+			else {
+				totalAmountLostFor20Day-=50;
+				System.out.println("Lost on day "+day +" is "+ (100-DAILY_STAKE));
+				daysLost++;
+			}
 
 		}
-		System.out.println(" final winning amount is " + win);
+
+		System.out.println("Total amount won in 20 days is "+ totalAmountWonFor20Day);
+		System.out.println("Total amount lost in 20 days is "+ totalAmountLostFor20Day);
+		System.out.println("No of days won is: "+ daysWon);
+		System.out.println("No of days Lost is: "+ daysLost);
 
 	}
 }
